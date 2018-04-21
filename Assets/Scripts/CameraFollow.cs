@@ -3,20 +3,18 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
     public GameObject player;
-    public float turnSpeed;
-    public float moveSpeed;
-    const float distance = 2f;
+    float dist;
 
-    Quaternion rotation = Quaternion.Euler(0, 0, 0);
 
     void Update() {
         Vector3 direction = player.GetComponent<Rigidbody>().velocity.normalized;
-    
-        transform.position = Vector3.MoveTowards(transform.position, player.GetComponent<Rigidbody>().position, Time.deltaTime * moveSpeed);
+        dist = Vector3.Distance(player.transform.position, transform.position);
+        transform.position = Vector3.MoveTowards(transform.position, player.GetComponent<Rigidbody>().position, Time.deltaTime * dist);
 
+        float angle = Quaternion.Angle(transform.rotation, player.transform.rotation);
 
         var goalRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * turnSpeed);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * (angle/12));
 
     }
 }
