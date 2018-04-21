@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BallController : MonoBehaviour {
+    public Transform cam;
+    public float sidewaysAcceleration;
+    Rigidbody rb;
 
-    public float X;
-
+    private void Awake() {
+        rb = GetComponent<Rigidbody>();
+    }
     void Update() {
         if (Input.GetKey(KeyCode.RightArrow)) {
-
-            transform.Translate(Vector3.right * Time.deltaTime * X, Space.World);
-
+            rb.AddForce(cam.right * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
         }
 
-
         if (Input.GetKey(KeyCode.LeftArrow)) {
-            transform.Translate(Vector3.left * Time.deltaTime * X, Space.World);
+            rb.AddForce(cam.right * -1 * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
         }
     }
 }
