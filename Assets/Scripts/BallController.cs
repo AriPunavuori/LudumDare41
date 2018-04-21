@@ -4,34 +4,18 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour {
 
-<<<<<<< HEAD
+    public float X;
+
     void Update() {
         if (Input.GetKey(KeyCode.RightArrow)) {
-=======
-    public float movingSensitivity;
-    public float Speed;
-	
-	void Update () {
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
->>>>>>> 52b5307598e69ac405bcd536b0d8d783285cd896
 
-            transform.Translate(Vector3.right * Time.deltaTime, Space.World);
+            transform.Translate(Vector3.right * Time.deltaTime * X, Space.World);
 
         }
 
 
-<<<<<<< HEAD
         if (Input.GetKey(KeyCode.LeftArrow)) {
-            transform.Translate(Vector3.left * Time.deltaTime, Space.World);
+            transform.Translate(Vector3.left * Time.deltaTime * X, Space.World);
         }
     }
-
-=======
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-                transform.Translate(Vector3.left * Time.deltaTime, Space.World);
-        }
-    }
->>>>>>> 52b5307598e69ac405bcd536b0d8d783285cd896
 }
