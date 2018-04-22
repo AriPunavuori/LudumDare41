@@ -339,6 +339,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3e2e8fdf690df49b2f719885735bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1886843250}
+  turnSpeed: 50
+  moveSpeed: 10
 --- !u!1 &734815391 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: a50d8fa7094f57e459ec1dca9a077cdb, type: 3}
@@ -1058,4 +1061,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d907512bd2d8ae64a972e631c0d60f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  X: 5
+  cam: {fileID: 508271742}
+  sidewaysAcceleration: 500
