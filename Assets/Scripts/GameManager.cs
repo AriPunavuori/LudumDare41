@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     public float countDownTimer;
     PersistentDataStorage pd;
     public Rigidbody rb;
+    public Rigidbody rb2;
     bool finished = false;
 
     void Start() {
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour {
                 statusText.text = "";
                 elapsedTime += Time.deltaTime;
                 rb.isKinematic = false;
+                rb2.isKinematic = false;
                 elapsedTimeText.text = ("Elapsed Time: " + elapsedTime);
             } else {
                 countDownTimer -= Time.deltaTime;
