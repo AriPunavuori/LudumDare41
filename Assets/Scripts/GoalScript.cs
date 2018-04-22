@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class GoalScript : MonoBehaviour {
-
+    GameManager gm;
 
     private void OnTriggerEnter(Collider other) {
-        //if (elapsedTime > bestTime) {
-            
-        //}
+        gm = GameObject.FindObjectOfType<GameManager>();
+        gm.Finished();
     }
 
 }
