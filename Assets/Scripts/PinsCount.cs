@@ -12,13 +12,9 @@ public class PinsCount : MonoBehaviour {
 	
     public void PinFell() {
         children--;
-    }
-
-	void Update () {
-
         if (children <= 0) {
             print("kaato!!");
-            children = 1;
         }
-	}
+    }
+
 }

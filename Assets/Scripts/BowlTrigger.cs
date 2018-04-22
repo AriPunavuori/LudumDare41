@@ -19,10 +19,13 @@ public class BowlTrigger : MonoBehaviour {
     }
 
     void Update () {
+        if (knockedOver) {
+            return;
+        }
         //print(Mathf.Abs(transform.rotation.x - startRot.x));
         //print(Mathf.Abs(transform.rotation.z - startRot.z));
-		if (Mathf.Abs( transform.rotation.x - startRot.x ) > 0.1 && !knockedOver || 
-                Mathf.Abs( transform.rotation.z - startRot.z) > 0.1 && !knockedOver) {
+		if (Mathf.Abs( transform.rotation.x - startRot.x ) > 0.1 || 
+                Mathf.Abs( transform.rotation.z - startRot.z) > 0.1 ) {
             print("keila kaatu");
             pinsCount.PinFell();
             knockedOver = true;
@@ -32,7 +35,7 @@ public class BowlTrigger : MonoBehaviour {
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.name != "track_1.1")
+        if (other.gameObject.name != "track_1.1") //korjaa
         {
             rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(MForce, ForceMode.Impulse);
