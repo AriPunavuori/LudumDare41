@@ -35,7 +35,7 @@ public class BowlTrigger : MonoBehaviour {
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.name != "track_1.1") //korjaa
+        if (other.gameObject.name == "Watermelon") //korjaa
         {
             rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(MForce, ForceMode.Impulse);
