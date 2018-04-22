@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour {
     public Transform cam;
     public float sidewaysAcceleration;
+    public float forwardAcceleration;
     Rigidbody rb;
 
     private void Awake() {
@@ -18,5 +19,7 @@ public class BallController : MonoBehaviour {
         if (Input.GetKey(KeyCode.LeftArrow)) {
             rb.AddForce(cam.right * -1 * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
         }
+
+       rb.AddForce(cam.forward * forwardAcceleration, ForceMode.Force);
     }
 }
