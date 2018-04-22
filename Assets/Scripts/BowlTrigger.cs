@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class BowlTrigger : MonoBehaviour {
 
+    Rigidbody rb;
+    public Vector3 MForce;
 
-	void Update () {
+   
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void Update () {
 		
+    
 	}
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject) {
-            Destroy(gameObject);
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.name != "track_1.1")
+        {
+            rb.constraints = RigidbodyConstraints.None;
+            rb.AddForce(MForce, ForceMode.Impulse);
+            //Destroy(gameObject);
         }
     }
+
 }
