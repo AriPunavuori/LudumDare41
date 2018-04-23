@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: d9858113277031b4d8d7e2c71ed8ee34
-timeCreated: 1524379331
+guid: 12c4350c3a20a8c4498751c72e1f0089
+timeCreated: 1524405661
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: No Name
+    2100000: 'Material #2'
     2300000: //RootNode
     3300000: //RootNode
     4300000: Cylinder001
@@ -17,7 +17,7 @@ ModelImporter:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

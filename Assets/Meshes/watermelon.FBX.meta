@@ -1,23 +1,23 @@
 fileFormatVersion: 2
-guid: 78414e33c39c07a4ea97223618ce72de
-timeCreated: 1524301397
+guid: 942aebb0fa487024d9261b44a485a8be
+timeCreated: 1524396722
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: No Name
+    2100000: 'Material #25'
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Tube004
+    4300000: Sphere001
     9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
