@@ -6,11 +6,11 @@ public class CameraFollow : MonoBehaviour {
     public GameObject player;
     float dist;
     public float angleSpeed;
-
+    public float speed;
     void Update() {
         Vector3 direction = player.GetComponent<Rigidbody>().velocity.normalized;
         dist = Vector3.Distance(player.transform.position, transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, player.GetComponent<Rigidbody>().position, Time.deltaTime * dist);
+        transform.position = Vector3.MoveTowards(transform.position, player.GetComponent<Rigidbody>().position, Time.deltaTime * dist * speed);
 
         float angle = Vector3.Angle(transform.forward, direction);
 
