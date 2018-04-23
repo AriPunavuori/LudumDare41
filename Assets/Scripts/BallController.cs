@@ -10,16 +10,27 @@ public class BallController : MonoBehaviour {
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
+        
     }
-    void Update() {
-        if (Input.GetKey(KeyCode.RightArrow)) {
-            rb.AddForce(cam.right * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
-        }
+            void Update() {
+                if (gameObject.name == "Watermelon"){
+                    if (Input.GetKey(KeyCode.RightArrow)) {
+                        rb.AddForce(cam.right * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
+                    }
 
-        if (Input.GetKey(KeyCode.LeftArrow)) {
-            rb.AddForce(cam.right * -1 * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
-        }
+                    if (Input.GetKey(KeyCode.LeftArrow)) {
+                        rb.AddForce(cam.right * -1 * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
+                    }
+                }
+                if (gameObject.name == "Watermelon (1)"){
+                    if (Input.GetKey(KeyCode.D)) {
+                        rb.AddForce(cam.right * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
+                    }
 
-       rb.AddForce(cam.forward * forwardAcceleration, ForceMode.Force);
-    }
+                    if (Input.GetKey(KeyCode.A)) {
+                        rb.AddForce(cam.right * -1 * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
+                    }
+                }
+                rb.AddForce(cam.forward * forwardAcceleration, ForceMode.Force);
+            }
 }
