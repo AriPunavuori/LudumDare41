@@ -2,24 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour {
     public GameObject MM;
+    public GameObject OptionsImage;
+    public GameObject PlayersImage;
+    public GameObject ControlsImage;
+
+
    
 
 
-
-    void Update()
-    {
-        
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            print("pöö");
-            GamePause();
-          
-        }
-    }
 
 
 
@@ -30,15 +24,7 @@ public class Menu : MonoBehaviour {
         MenuOff();
     }
 
-   public void GamePause()
-    {
-        
-            Time.timeScale = 0;
-            print("Tauko peliin!");
-            
-            SceneManager.LoadScene("MenuScene");
-        
-    }
+
 
         void MenuOff()
     {
@@ -46,8 +32,34 @@ public class Menu : MonoBehaviour {
         print("Peli alkaa");
     }
 
+    void OptionsMenu()
+    {
+        
+        MM.SetActive(false);
+    }
+
+    public void BackMenu()
+    {
+        MM.SetActive(true);
+        OptionsImage.SetActive(true);
+        PlayersImage.SetActive(true);
+        ControlsImage.SetActive(true);
+
+    }
       
-    
+   public void Players()
+    {
+        OptionsImage.SetActive(false);
+        PlayersImage.SetActive(true);
+        ControlsImage.SetActive(false);
+    }
+
+    public void Controls()
+    {
+        OptionsImage.SetActive(false);
+        ControlsImage.SetActive(true);
+        PlayersImage.SetActive(false);
+    }
 
     public void Quit()
     {
@@ -57,6 +69,8 @@ public class Menu : MonoBehaviour {
         }
        
     }
+
+
 
 
 }

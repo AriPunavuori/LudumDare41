@@ -5,54 +5,60 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-    public GameObject PersistentDataPrefab;
     public Text statusText;
-    public Text elapsedTimeText;
-    public Text bestTimeText;
-    float elapsedTime = 0;
+    public Text statusText1;
+    public Text elapsedTimeText1;
+    public Text bestTimeText1;
+    public Text statusText2;
+    public Text elapsedTimeText2;
+    public Text bestTimeText2;
+    float elapsedTime1 = 0;
+    float elapsedTime2 = 0;
     public float countDownTimer;
-    //PersistentDataStorage pd;
     public Rigidbody rb;
     public Rigidbody rb2;
-    bool finished = false;
+    bool finished1 = false;
+    bool finished2 = false;
     float bestTime;
-    public Text strikeText;
+    string strikeText;
     float strikeTimer = 0;
 
     void Start() {
 
         bestTime = PlayerPrefs.GetFloat("bestTime", float.MaxValue);
-        //PlayerPrefs.SetFloat("bestTime", float.MaxValue);
+        strikeText = "";
 
-        //pd = GameObject.FindObjectOfType<PersistentDataStorage>();
-        //if (pd == null) {
-        //    var pdgo = Instantiate(PersistentDataPrefab);
-        //    pd = pdgo.GetComponent<PersistentDataStorage>();
-        //}
-
-        strikeText.text = "";
         statusText.text = "";
-        elapsedTimeText.text = "Time:  " + elapsedTime;
-        //if (/*pd.*/bestTime == Mathf.Infinity) {
-        //    bestTimeText.text = " Best Time: 0:00:00 " + /*pd.*/bestTime;
-        //}
-        bestTimeText.text = (" Best Time:  " + bestTime.ToString("n1") + "0");
+
+        statusText1.text = "";
+        elapsedTimeText1.text = ("Time:  " + elapsedTime1.ToString("n1") + "0");
+        bestTimeText1.text = ("Best Time:  " + bestTime.ToString("n1") + "0");
+        statusText2.text = "";
+        elapsedTimeText2.text = ("Time:  " + elapsedTime2.ToString("n1") + "0");
+        bestTimeText2.text = ("Best Time:  " + bestTime.ToString("n1") + "0");
     }
 
     private void Update() {
-        if (!finished) {
+        if (!finished1) {
             if (countDownTimer < 0) {
                 statusText.text = "";
-                elapsedTime += Time.deltaTime;
+                elapsedTime1 += Time.deltaTime;
                 rb.isKinematic = false;
-                rb2.isKinematic = false;
-                elapsedTimeText.text = ("Elapsed Time: " + elapsedTime.ToString("n1") + "0");
+                elapsedTimeText1.text = ("Elapsed Time: " + elapsedTime1.ToString("n1") + "0");
             } else {
                 countDownTimer -= Time.deltaTime;
                 statusText.text = ("Ready to go in: " + countDownTimer.ToString("n1"));
             }
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                SceneManager.LoadScene(0);
+
+        }
+        if (!finished2) {
+            if (countDownTimer < 0) {
+                statusText2.text = "";
+                elapsedTime2 += Time.deltaTime;
+                rb2.isKinematic = false;
+                elapsedTimeText2.text = ("Elapsed Time: " + elapsedTime2.ToString("n1") + "0");
+            } else {
+                countDownTimer -= Time.deltaTime;
             }
         }
 
@@ -68,30 +74,50 @@ public class GameManager : MonoBehaviour {
         }
 
     }
-    void GameOver() {
-        if (elapsedTime < bestTime) {
-            /*pd.*/bestTime = elapsedTime;
-            statusText.text = ("Wow! A new HighScore! " + elapsedTime.ToString("n1") + "0");
-            elapsedTimeText.text = "";
-            bestTimeText.text = "";
-            PlayerPrefs.SetFloat("bestTime", elapsedTime);
-        } else {
-            statusText.text = ("Finished, your time was: " + elapsedTime.ToString("n1") + "0");
-            elapsedTimeText.text = "";
-            bestTimeText.text = "";
+    void GameOver(int p) {
+        if (p == 1) {
+            if (elapsedTime1 < bestTime) {
+                bestTime = elapsedTime1;
+                statusText1.text = ("Wow! A new HighScore! " + elapsedTime1.ToString("n1") + "0");
+                elapsedTimeText1.text = "";
+                bestTimeText1.text = "";
+                PlayerPrefs.SetFloat("bestTime", elapsedTime1);
+            } else {
+                statusText1.text = ("Finished, your time was: " + elapsedTime1.ToString("n1") + "0");
+                elapsedTimeText1.text = "";
+                bestTimeText1.text = "";
+            }
+        }
+        if (p == 2) { 
+            if (elapsedTime2 < bestTime) {
+                bestTime = elapsedTime2;
+                statusText2.text = ("Wow! A new HighScore! " + elapsedTime2.ToString("n1") + "0");
+                elapsedTimeText2.text = "";
+                bestTimeText2.text = "";
+                PlayerPrefs.SetFloat("bestTime", elapsedTime2);
+            } else {
+                statusText2.text = ("Finished, your time was: " + elapsedTime2.ToString("n1") + "0");
+                elapsedTimeText2.text = "";
+                bestTimeText2.text = "";
+            }
         }
     }
 
-    public void Finished() {
-        finished = true;
-        GameOver();
+    public void Finished(int p) {
+        if (p == 1) {
+            finished1 = true;
+        } else if ( p == 2) {
+            finished2 = true;
+        }
+        GameOver(p);
     }
 
     public void Strike(GameObject melon) {
         //UI notification
         print("JEE");
         strikeTimer = 5f;
-        strikeText.text = "Strike!!!" + melon.name;
+        strikeText = "Strike!!!" + melon.name;
+        statusText.text = strikeText;
 
 
     }
