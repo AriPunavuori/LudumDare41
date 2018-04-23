@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23089582255286562}
   - component: {fileID: 114598674255902706}
   - component: {fileID: 54989936623805962}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d907512bd2d8ae64a972e631c0d60f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingSensitivity: 1
-  Speed: 5
+  cam: {fileID: 0}
+  sidewaysAcceleration: 0
 --- !u!135 &135219297336698614
 SphereCollider:
   m_ObjectHideFlags: 1
