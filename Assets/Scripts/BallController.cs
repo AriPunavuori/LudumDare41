@@ -21,6 +21,14 @@ public class BallController : MonoBehaviour {
                     if (Input.GetKey(KeyCode.LeftArrow)) {
                         rb.AddForce(cam.right * -1 * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
                     }
+                    if (Input.GetKey(KeyCode.UpArrow)) {
+                        rb.AddForce(cam.forward * forwardAcceleration * Time.deltaTime, ForceMode.Acceleration);
+                    }
+
+                    if (Input.GetKey(KeyCode.DownArrow)) {
+                        rb.AddForce(cam.forward * -1 * forwardAcceleration * Time.deltaTime, ForceMode.Acceleration);
+                    }
+
                 }
                 if (gameObject.name == "Watermelon (1)"){
                     if (Input.GetKey(KeyCode.D)) {
@@ -30,7 +38,14 @@ public class BallController : MonoBehaviour {
                     if (Input.GetKey(KeyCode.A)) {
                         rb.AddForce(cam.right * -1 * sidewaysAcceleration * Time.deltaTime, ForceMode.Acceleration);
                     }
+                    if (Input.GetKey(KeyCode.W)) {
+                        rb.AddForce(cam.forward * forwardAcceleration * Time.deltaTime, ForceMode.Acceleration);
+                    }
+
+                    if (Input.GetKey(KeyCode.S)) {
+                        rb.AddForce(cam.forward * -1 * forwardAcceleration * Time.deltaTime, ForceMode.Acceleration);
+                    }
                 }
-                rb.AddForce(cam.forward * forwardAcceleration, ForceMode.Force);
+               // rb.AddForce(cam.forward * forwardAcceleration, ForceMode.Force);
             }
 }

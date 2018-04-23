@@ -11,27 +11,32 @@ public class GameManager : MonoBehaviour {
     public Text bestTimeText;
     float elapsedTime = 0;
     public float countDownTimer;
-    PersistentDataStorage pd;
+    //PersistentDataStorage pd;
     public Rigidbody rb;
     public Rigidbody rb2;
     bool finished = false;
+    float bestTime;
     public Text strikeText;
     float strikeTimer = 0;
 
     void Start() {
-        pd = GameObject.FindObjectOfType<PersistentDataStorage>();
-        if (pd == null) {
-            var pdgo = Instantiate(PersistentDataPrefab);
-            pd = pdgo.GetComponent<PersistentDataStorage>();
-        }
+
+        bestTime = PlayerPrefs.GetFloat("bestTime", float.MaxValue);
+        //PlayerPrefs.SetFloat("bestTime", float.MaxValue);
+
+        //pd = GameObject.FindObjectOfType<PersistentDataStorage>();
+        //if (pd == null) {
+        //    var pdgo = Instantiate(PersistentDataPrefab);
+        //    pd = pdgo.GetComponent<PersistentDataStorage>();
+        //}
 
         strikeText.text = "";
         statusText.text = "";
         elapsedTimeText.text = "Time:  " + elapsedTime;
-        if (pd.bestTime == Mathf.Infinity) {
-            bestTimeText.text = " Best Time: 0:00:00 " + pd.bestTime;
-        }
-        bestTimeText.text = " Best Time:  " + pd.bestTime;
+        //if (/*pd.*/bestTime == Mathf.Infinity) {
+        //    bestTimeText.text = " Best Time: 0:00:00 " + /*pd.*/bestTime;
+        //}
+        bestTimeText.text = (" Best Time:  " + bestTime.ToString("n1") + "0");
     }
 
     private void Update() {
@@ -41,10 +46,10 @@ public class GameManager : MonoBehaviour {
                 elapsedTime += Time.deltaTime;
                 rb.isKinematic = false;
                 rb2.isKinematic = false;
-                elapsedTimeText.text = ("Elapsed Time: " + elapsedTime);
+                elapsedTimeText.text = ("Elapsed Time: " + elapsedTime.ToString("n1") + "0");
             } else {
                 countDownTimer -= Time.deltaTime;
-                statusText.text = ("" + countDownTimer);
+                statusText.text = ("Ready to go in: " + countDownTimer.ToString("n1"));
             }
             if (Input.GetKeyDown(KeyCode.Space)) {
                 SceneManager.LoadScene(0);
@@ -58,21 +63,20 @@ public class GameManager : MonoBehaviour {
         if (strikeTimer < 0) {
             statusText.text = "";
             print("haloo");
-        }
-        else {
+        } else {
             strikeTimer -= Time.deltaTime;
         }
 
-
     }
     void GameOver() {
-        if (elapsedTime < pd.bestTime) {
-            pd.bestTime = elapsedTime;
-            statusText.text = "Wow! A new HighScore!" + elapsedTime;
+        if (elapsedTime < bestTime) {
+            /*pd.*/bestTime = elapsedTime;
+            statusText.text = ("Wow! A new HighScore! " + elapsedTime.ToString("n1") + "0");
             elapsedTimeText.text = "";
             bestTimeText.text = "";
+            PlayerPrefs.SetFloat("bestTime", elapsedTime);
         } else {
-            statusText.text = "Finished, your time was: " + elapsedTime;
+            statusText.text = ("Finished, your time was: " + elapsedTime.ToString("n1") + "0");
             elapsedTimeText.text = "";
             bestTimeText.text = "";
         }
