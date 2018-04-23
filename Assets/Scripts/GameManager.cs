@@ -111,6 +111,13 @@ public class GameManager : MonoBehaviour {
         }
         GameOver(p);
     }
+    public void Fell(int p) {
+        if (p == 1) {
+            statusText1.text = "You Fell! Try to stay on track next time...";
+        } else if (p == 2) {
+            statusText1.text = "You Fell! Try to stay on track next time...";
+        }
+    }
 
     public void Strike(GameObject melon) {
         //UI notification
