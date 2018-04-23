@@ -5,16 +5,21 @@ using UnityEngine;
 public class PinsCount : MonoBehaviour {
 
     int children;
+    GameManager gm;
 
-	void Start () {
+    void Start () {
         children = transform.childCount;
-	}
+        gm = FindObjectOfType<GameManager>();
+    }
 	
-    public void PinFell() {
+    public void PinFell(GameObject melon) {
         children--;
         if (children <= 0) {
             print("kaato!!");
+            gm.Strike(melon);
         }
     }
+
+    
 
 }
