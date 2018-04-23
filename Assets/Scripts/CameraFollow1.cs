@@ -2,22 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CameraFollow : MonoBehaviour {
+public class CameraFollow1 : MonoBehaviour {
     public GameObject player;
     float dist;
     public float angleSpeed;
     public float speed;
+    bool follow = true;
     void Update() {
-        Vector3 direction = player.GetComponent<Rigidbody>().velocity.normalized;
-        dist = Vector3.Distance(player.transform.position, transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, player.GetComponent<Rigidbody>().position, Time.deltaTime * dist * speed);
-
-        float angle = Vector3.Angle(transform.forward, direction);
-
-
-        var goalRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * (angle / angleSpeed));
-
+        if (follow) {
+            Vector3 direction = player.GetComponent<Rigidbody>().velocity.normalized;
+            dist = Vector3.Distance(player.transform.position, transform.position);
+            transform.position = Vector3.MoveTowards(transform.position, player.GetComponent<Rigidbody>().position, Time.deltaTime * dist * speed);
+            float angle = Vector3.Angle(transform.forward, direction);
+            var goalRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * (angle / angleSpeed));
+        }
+    }
+    public void StopFollowing() {
+        follow = false;
     }
 }
 //using UnityEngine;

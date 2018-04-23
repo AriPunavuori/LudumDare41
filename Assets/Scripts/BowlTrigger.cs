@@ -29,7 +29,7 @@ public class BowlTrigger : MonoBehaviour {
         //print(Mathf.Abs(transform.rotation.z - startRot.z));
 		if (Mathf.Abs( transform.rotation.x - startRot.x ) > 0.1 || 
                 Mathf.Abs( transform.rotation.z - startRot.z) > 0.1 ) {
-            print("keila kaatu");
+            //print("keila kaatu");
             pinsCount.PinFell(melon);
             knockedOver = true;
         }
@@ -42,7 +42,7 @@ public class BowlTrigger : MonoBehaviour {
         {
             rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(MForce, ForceMode.Impulse);
-            print("osu");
+            //print("osu");
             melon = other.gameObject;
             //gm.Strike(other.gameObject);
 

@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour {
     float elapsedTime1 = 0;
     float elapsedTime2 = 0;
     public float countDownTimer;
+    float goTimer = 3f;
     public Rigidbody rb;
     public Rigidbody rb2;
+    bool started = false;
     bool finished1 = false;
     bool finished2 = false;
     float bestTime;
@@ -41,10 +43,21 @@ public class GameManager : MonoBehaviour {
     private void Update() {
         if (!finished1) {
             if (countDownTimer < 0) {
-                statusText.text = "";
                 elapsedTime1 += Time.deltaTime;
                 rb.isKinematic = false;
                 elapsedTimeText1.text = ("Elapsed Time: " + elapsedTime1.ToString("n1") + "0");
+                if (!started)
+                {
+                    started = true;
+                    statusText.text = "GO, GO, GO!";
+                } else
+                {
+                    goTimer -= Time.deltaTime;
+                }
+                if (goTimer < 0)
+                {
+                    statusText.text = "";
+                }
             } else {
                 countDownTimer -= Time.deltaTime;
                 statusText.text = ("Ready to go in: " + countDownTimer.ToString("n1"));
@@ -53,13 +66,11 @@ public class GameManager : MonoBehaviour {
         }
         if (!finished2) {
             if (countDownTimer < 0) {
-                statusText2.text = "";
+
                 elapsedTime2 += Time.deltaTime;
                 rb2.isKinematic = false;
                 elapsedTimeText2.text = ("Elapsed Time: " + elapsedTime2.ToString("n1") + "0");
-            } else {
-                countDownTimer -= Time.deltaTime;
-            }
+            } 
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -67,8 +78,8 @@ public class GameManager : MonoBehaviour {
         }
 
         if (strikeTimer < 0) {
-            statusText.text = "";
-            print("haloo");
+            //statusText.text = "";
+            //print("haloo");
         } else {
             strikeTimer -= Time.deltaTime;
         }
@@ -121,9 +132,9 @@ public class GameManager : MonoBehaviour {
 
     public void Strike(GameObject melon) {
         //UI notification
-        print("JEE");
+        //print("JEE");
         strikeTimer = 5f;
-        strikeText = "Strike!!!" + melon.name;
+        strikeText = "Strike!!!"  /*+ *melon.name*/;
         statusText.text = strikeText;
 
 
