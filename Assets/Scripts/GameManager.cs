@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
     public Rigidbody rb;
     public Rigidbody rb2;
     bool finished = false;
+    public Text strikeText;
+    float strikeTimer = 0;
 
     void Start() {
         pd = GameObject.FindObjectOfType<PersistentDataStorage>();
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour {
             pd = pdgo.GetComponent<PersistentDataStorage>();
         }
 
+        strikeText.text = "";
         statusText.text = "";
         elapsedTimeText.text = "Time:  " + elapsedTime;
         if (pd.bestTime == Mathf.Infinity) {
@@ -52,6 +55,14 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(0);
         }
 
+        if (strikeTimer < 0) {
+            statusText.text = "";
+            print("haloo");
+        }
+        else {
+            strikeTimer -= Time.deltaTime;
+        }
+
 
     }
     void GameOver() {
@@ -72,5 +83,13 @@ public class GameManager : MonoBehaviour {
         GameOver();
     }
 
+    public void Strike(GameObject melon) {
+        //UI notification
+        print("JEE");
+        strikeTimer = 5f;
+        strikeText.text = "Strike!!!" + melon.name;
+
+
+    }
 
 }
