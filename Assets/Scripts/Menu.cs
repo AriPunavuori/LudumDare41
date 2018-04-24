@@ -62,10 +62,9 @@ public class Menu : MonoBehaviour {
 
     public void Quit()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
+        
             Application.Quit();
-        }
+  
        
     }
 

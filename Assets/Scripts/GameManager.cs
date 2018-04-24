@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour {
                 }
             } else {
                 countDownTimer -= Time.deltaTime;
-                statusText.text = ("Ready to go in: " + countDownTimer.ToString("n1"));
+                statusText.text = ("Ready to go in: " + countDownTimer.ToString("n0"));
             }
 
         }

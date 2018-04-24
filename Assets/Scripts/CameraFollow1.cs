@@ -16,6 +16,9 @@ public class CameraFollow1 : MonoBehaviour {
             float angle = Vector3.Angle(transform.forward, direction);
             var goalRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, goalRotation, Time.deltaTime * (angle / angleSpeed));
+        } else {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(15, -50, -55), Time.deltaTime * 5);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(30f, 0f, 0f), Time.deltaTime * 20);
         }
     }
     public void StopFollowing() {
